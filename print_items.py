@@ -45,20 +45,24 @@ def am_codes(code):
 #
 # Main
 #
-
+resultfile= open ( "out.txt", "w")
 
 fd = open("Felanmälningar_5års_besiktning - Felanmälningar.tsv", "r")
 line = fd.readline()
 while line:
+
     items = line.split("\t")
     lgh = items[2]
-    print(filler[0:74] + items[2] )
-    print("\nLägenhet " + items[2] + "\n\n")
-    print(items[1] + "\t" + items[2] + "\t" + am_codes(items[7]) + items[12])
+    resultfile.write(filler[0:74] + items[2])
+    resultfile.write("\nLägenhet " + items[2] + "\n\n")
+
+    resultfile.write((items[1]+ "    ")[0:8] + am_codes(items[7]) + items[12] + "\n\n")
     line = fd.readline()
     items_nextline = line.split("\t")
     while line and items[2] == items_nextline[2]:
-        print(items_nextline[1] + "\t" + items_nextline[2] + "\t" + am_codes(items_nextline[7]) + items_nextline[12])
+        resultfile.write((items_nextline[1] + "    ")[0:8] + am_codes(items_nextline[7]) + items_nextline[12] + "\n\n")
         line = fd.readline()
         items_nextline = line.split("\t")
-    print("\n Slut " + items[2] + "\n\n\f")
+    resultfile.write( "\f")
+
+resultfile.close()
