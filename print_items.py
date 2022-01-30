@@ -1,5 +1,5 @@
+filler = "                                                                                  "
 def am_codes(code):
-    filler = "                               "
     if code == "AM1": return (code + ":Dörr,Balkong" + filler)[0:25]
     elif code == "AM2": return (code + ":Dörr,Fransk Balkong" + filler)[0:25]
     elif code == "AM3": return (code + ":Dörr,Entre" + filler)[0:25]
@@ -52,6 +52,7 @@ line = fd.readline()
 while line:
     items = line.split("\t")
     lgh = items[2]
+    print(filler[0:74] + items[2] )
     print("\nLägenhet " + items[2] + "\n\n")
     print(items[1] + "\t" + items[2] + "\t" + am_codes(items[7]) + items[12])
     line = fd.readline()
